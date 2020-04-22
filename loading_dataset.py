@@ -4,7 +4,7 @@ import os
 
 os.environ["KAGGLE_USERNAME"] = "KAGGLE_USERNAME"  # username from the json file
 os.environ["KAGGLE_KEY"] = "KAGGLE_KEY"  # key from the json file
-!kaggle datasets download -d praveengovi/coronahack-chest-xraydataset # api copied from kaggle
+!kaggle datasets download -d praveengovi/coronahack-chest-xraydataset  # api copied from kaggle
 
 # Create a ZipFile Object and load chest-xray-pneumonia.zip in it
 with ZipFile("chest-xray-pneumonia.zip", "r") as zipObj:
