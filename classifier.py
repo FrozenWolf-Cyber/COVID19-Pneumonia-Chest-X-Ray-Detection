@@ -10,12 +10,14 @@ import cv2
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-PATH_TRAIN = 'Coronahack-Chest-XRay-Dataset/Coronahack-Chest-XRay-Dataset/train'
+PATH_TRAIN = "Coronahack-Chest-XRay-Dataset/Coronahack-Chest-XRay-Dataset/train"
 EPOCHS = 20
 BATCH_SIZE = 32
-TOTAL_SIZE = len(os.listdir(PATH_TRAIN+"/NORMAL")) + len(os.listdir(PATH_TRAIN+"/INFECTED"))
+TOTAL_SIZE = len(os.listdir(PATH_TRAIN + "/NORMAL")) + len(
+    os.listdir(PATH_TRAIN + "/INFECTED")
+)
 STEPS_PER_EPOCH = TOTAL_SIZE // BATCH_SIZE
-IMAGE_H , IMAGE_W = 224 , 224
+IMAGE_H, IMAGE_W = 224, 224
 
 transform = torchvision.transforms.Compose(
     [  # Applying Augmentation
@@ -32,9 +34,7 @@ transform = torchvision.transforms.Compose(
 
 # Intitalizing the train data loader
 
-train_dataset = torchvision.datasets.ImageFolder(
-    root=PATH_TRAIN, transform=transform
-)
+train_dataset = torchvision.datasets.ImageFolder(root=PATH_TRAIN, transform=transform)
 
 train_loader = torch.utils.data.DataLoader(
     train_dataset, batch_size=BATCH_SIZE, num_workers=1, shuffle=True
@@ -70,7 +70,11 @@ loss_history = []
 
 for i in range(EPOCHS):
     start = time.time()
-    print("-----------------------EPOCH "+ str(i)+ " -----------------------------------" )
+    print(
+        "-----------------------EPOCH "
+        + str(i)
+        + " -----------------------------------"
+    )
     for batch_idx, (data, target) in enumerate(train_loader):
         if batch_idx == STEPS_PER_EPOCH:
             break
@@ -102,12 +106,36 @@ for i in range(EPOCHS):
 
                 incorrect = incorrect + 1
 
-        print("EPOCH "+ str(i)+ " MINIBATCH: "+ str(batch_idx) + "/" + str(STEPS_PER_EPOCH)+ " LOSS: "+ str(loss_history[-1])+ " ACC: " + str(correct / (incorrect + correct)),end="\r")
+        print(
+            "EPOCH "
+            + str(i)
+            + " MINIBATCH: "
+            + str(batch_idx)
+            + "/"
+            + str(STEPS_PER_EPOCH)
+            + " LOSS: "
+            + str(loss_history[-1])
+            + " ACC: "
+            + str(correct / (incorrect + correct)),
+            end="\r",
+        )
 
     end = time.time()
-    print("EPOCH "+ str(i)+ " LOSS "+ str(sum(loss_history[-STEPS_PER_EPOCH:]) / STEPS_PER_EPOCH) + " ETA: "+ str(start - end)+ " \n MAX LOSS: " + str(max(loss_history[-STEPS_PER_EPOCH:]))+ " MIN LOSS: " + str(min(loss_history[-STEPS_PER_EPOCH:])))
+    print(
+        "EPOCH "
+        + str(i)
+        + " LOSS "
+        + str(sum(loss_history[-STEPS_PER_EPOCH:]) / STEPS_PER_EPOCH)
+        + " ETA: "
+        + str(start - end)
+        + " \n MAX LOSS: "
+        + str(max(loss_history[-STEPS_PER_EPOCH:]))
+        + " MIN LOSS: "
+        + str(min(loss_history[-STEPS_PER_EPOCH:]))
+    )
 
 plt.plot(loss_history)
+
 
 def get_test():
     test_loss = []
@@ -151,5 +179,6 @@ def get_test():
         + " TEST_LOSS:- "
         + str(float(sum(test_loss) / len(test_loss)))
     )
-    
-get_test() # Checking accuracy of model with test data
+
+
+get_test()  # Checking accuracy of model with test data
