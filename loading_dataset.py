@@ -6,7 +6,7 @@ os.environ['KAGGLE_KEY'] = "KAGGLE_KEY" # key from the json file
 !kaggle datasets download -d praveengovi/coronahack-chest-xraydataset # api copied from kaggle
 
 # Create a ZipFile Object and load chest-xray-pneumonia.zip in it
-with ZipFile('chest-xray-pneumonia.zip', 'r') as zipObj:
+with ZipFile('coronahack-chest-xraydataset.zip', 'r') as zipObj:
    # Extract all the contents of zip file in current directory
    zipObj.extractall()
    
@@ -16,6 +16,7 @@ import os
 import pandas as pd
 import time
 import shutil 
+import matplotlib.pyplot as plt
 
 PATH_TRAIN = 'Coronahack-Chest-XRay-Dataset/Coronahack-Chest-XRay-Dataset/train'
 TOTAL_IMGS = len(os.listdir(PATH_TRAIN))
