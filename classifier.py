@@ -43,7 +43,7 @@ train_loader = torch.utils.data.DataLoader(
 # Intitalizing the test data loader
 
 test_dataset = torchvision.datasets.ImageFolder(
-    root=PATH_TEST, transform=test_transform
+    root=PATH_TEST, transform=transform
 )
 
 test_loader = torch.utils.data.DataLoader(
