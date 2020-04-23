@@ -127,7 +127,7 @@ for i in range(EPOCHS):
         + " LOSS "
         + str(sum(loss_history[-STEPS_PER_EPOCH:]) / STEPS_PER_EPOCH)
         + " ETA: "
-        + str(start - end)
+        + str(end - start)
         + " \n MAX LOSS: "
         + str(max(loss_history[-STEPS_PER_EPOCH:]))
         + " MIN LOSS: "
