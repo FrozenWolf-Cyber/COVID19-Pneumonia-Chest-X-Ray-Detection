@@ -16,7 +16,11 @@ BATCH_SIZE = 32
 TOTAL_SIZE = len(os.listdir(PATH_TRAIN + "/NORMAL")) + len(
     os.listdir(PATH_TRAIN + "/INFECTED")
 )
+TOTAL_TEST_SIZE = len(os.listdir(PATH_TEST + "/NORMAL")) + len(
+    os.listdir(PATH_TEST + "/INFECTED")
+)
 STEPS_PER_EPOCH = TOTAL_SIZE // BATCH_SIZE
+STEPS_PER_TEST_EPOCH = TOTAL_TEST_SIZE // BATCH_SIZE
 IMAGE_H, IMAGE_W = 224, 224
 
 transform = torchvision.transforms.Compose(
@@ -158,7 +162,7 @@ def get_test():
             criterion = nn.CrossEntropyLoss()
             loss = criterion(output, target)
 
-            for i in range(TEST_BATCH_SIZE):
+            for i in range(BATCH_SIZE):
                 a = []
                 for j in output[i]:
                     a.append(float(j.detach()))
