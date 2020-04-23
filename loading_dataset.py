@@ -17,6 +17,7 @@ import os
 import pandas as pd
 import time
 import shutil
+import matplotlib.pyplot as plt
 
 PATH_TRAIN = "Coronahack-Chest-XRay-Dataset/Coronahack-Chest-XRay-Dataset/train"
 TOTAL_IMGS = len(os.listdir(PATH_TRAIN))
