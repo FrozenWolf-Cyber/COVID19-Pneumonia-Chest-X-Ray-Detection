@@ -1,4 +1,4 @@
-# Pneumonia-COVID19-Detection
+# Pneumonia-Detection
 Fine-tuning Resnet18 model to predict if the patient has Pneumonia (Corona) with the help of x-ray.
 The Resnet18 model will be able to predict with an accuracy of 91%
 
